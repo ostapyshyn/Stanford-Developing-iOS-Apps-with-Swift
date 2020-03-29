@@ -11,22 +11,31 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var flipCountLabel: UILabel!
+    @IBOutlet var cardButtons: [UIButton]!
     
-    var flipCount = 0
+    var emojiChoices = ["👻", "🎃", "👻", "🎃"]
     
     
-    @IBAction func touchSecond(_ sender: UIButton) {
-        flipCount += 1
-        flipCountLabel.text = "Flips: \(flipCount)"
-        print("agh! a pumpkin!")
-        flipCard(withEmoji: "🎃", on: sender)
+    
+    
+    var flipCount = 0 {
+        didSet {
+            flipCountLabel.text = "Flips: \(flipCount)"
+        }
     }
+    
     
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
-        print("agh! a ghost!")
-        flipCard(withEmoji: "👻", on: sender)
+        let cardNumber = cardButtons.firstIndex(of: sender)!
+        print("card number \(cardNumber)")
+        flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
+    
+        
+        
+        
+        
     }
     
     func flipCard(withEmoji emoji: String, on button: UIButton) {
