@@ -10,13 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    lazy var game: Concentration = Concentration(numberOfPairsOfCards: cardButtons.count / 2)
+    
     @IBOutlet var flipCountLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
     
     var emojiChoices = ["👻", "🎃", "👻", "🎃"]
-    
-    
-    
     
     var flipCount = 0 {
         didSet {
@@ -24,17 +23,11 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    
-    @IBAction func touchCard(_ sender: UIButton) {
+     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
         let cardNumber = cardButtons.firstIndex(of: sender)!
         print("card number \(cardNumber)")
         flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
-    
-        
-        
-        
         
     }
     
